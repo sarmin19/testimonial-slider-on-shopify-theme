@@ -1,0 +1,196 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<div class="reviews_area page-width">
+  <div class="testimonial_heading"><h1>{{ section.settings.quote_heading }}</h1></div>
+<div class="owl-carousel owl-theme">
+  {% for block in section.blocks %}
+    <div class="item">
+      {% if block.settings.show_averter %}
+      <div class="avarter_pic">
+        {% if block.settings.avarter %} 
+        <img src="{{ block.settings.avarter | image_url: width: 100 }}" />
+        {% else %}
+          <img src="{{ 'avarter.png' | asset_img_url }}" />
+          {% endif %}
+      </div>
+      {% endif %}
+      <div class="reviews_heading">{{ block.settings.heading }}</div>
+      <div class="rating_only"> &bigstar; &bigstar; &bigstar; &bigstar; &bigstar;  </div>
+      <div class="start_rating">
+    
+      </div>
+      <div class="reviews_content">{{ block.settings.quote }}</div>
+      <div class="author">{{ block.settings.author }}</div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+<style>
+  .rating_only{
+    color: #d9b805;
+    font-size:20px;
+  }
+  .avarter_pic {
+    width: 80px;
+}
+  
+   .owl-carousel .item {
+    justify-content: center;
+    align-items: center;
+}
+  .author {
+    font-style: italic;
+    font-size: 14px;
+}
+.testimonial_heading {
+    text-align: center;
+    text-transform: capitalize;
+}
+.owl-nav {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.owl-nav button {
+    background: transparent;
+    height: 33px !important;
+    width: 33px !important;
+    line-height: 10px !important;
+    color: #666 !important;
+    z-index: 9;
+    border-radius: 50%;
+    font-size: 25px !important;
+    border: 1px solid #444 !important;
+}
+  .owl-nav button:hover {
+    background: rgba(0, 0, 0, .4) !important;
+}
+  .owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev {
+    margin: 0px 7px;
+}
+  .reviews_heading {
+    font-weight: bold;
+    font-size: 18px;
+}
+  .owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev, .owl-carousel button.owl-dot {
+
+    font: revert;
+}
+  .owl-carousel .owl-item img {
+    display: block;
+    width: 100%;
+    width: 80px;
+    height: 80px;
+}
+
+  .avarter_pic {
+    width: 80px;
+    height: 80px;
+}
+  .testimonial_heading h1 {
+    font-size: 30px;
+    text-transform:inherit;
+}
+  .reviews_area.page-width {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+</style>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+  // autoplay:true,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:2
+        },
+        1000:{
+            items:3
+        }
+    }
+});
+  });
+</script>
+
+
+{% schema %}
+  {
+    "name": "Custom testimonial",
+    "settings": [
+      {
+          "type": "text",
+          "id": "quote_heading",
+          "label": "Heading"
+        }
+      
+    ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "avarter",
+          "label": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_averter",
+          "label": "Profile image",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Quote"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author"
+        }
+        
+        
+      ]
+    }
+  ],
+    "presets": [
+    {
+      "name": "Custom testimonial",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
